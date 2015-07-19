@@ -33,9 +33,9 @@
             <li><a href="users.html">Users</a></li>
           
           </ul>
-          <form class="navbar-form navbar-left" role="search">
+          <form class="navbar-form navbar-left " role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control search-form" placeholder="Search">
             </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
@@ -84,7 +84,7 @@
                 <li><a href="categories.html">Categories</a></li>
                 <li class="active">Users</li>
               </ol>
-           <table id="sort-table" class="table table-striped">
+           <table id="sort-table" class="table table-striped tablesorter">
               <thead>
               <tr>
                 <th><input type="checkbox"></th>
@@ -162,6 +162,18 @@
             });
         });
     </script>
+    <script>
+    var $rows = $ ('table tr');
+    $('.search-form').keyup(function(){
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        $rows.show().filter(function(){
+          var text = $(this).text().replace(/\+/g, ' ').toLowerCase();
+          return !~text.indexOf(val);
+
+        }).hide();
+
+    });
+    </script>    
     
 
 
